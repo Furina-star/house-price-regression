@@ -1,8 +1,20 @@
-# House Price Prediction with Linear Regression
+<h1 align="center">House Price Prediction with Linear Regression</h1>
 
+<p align="center">
 A hands-on machine learning project focused on understanding regression fundamentals through house price prediction using Python and scikit-learn.
+</p>
 
+<p align="center">
 The project progresses from a relatively clean dataset to a more realistic dataset requiring additional preprocessing, feature engineering, and regularization.
+</p>
+
+<p align="center">
+  <img src="https://img.shields.io/badge/Python-3776AB?style=flat&amp;logo=python&amp;logoColor=white" alt="Python">
+  <img src="https://img.shields.io/badge/pandas-150458?style=flat&amp;logo=pandas&amp;logoColor=white" alt="pandas">
+  <img src="https://img.shields.io/badge/NumPy-013243?style=flat&amp;logo=numpy&amp;logoColor=white" alt="NumPy">
+  <img src="https://img.shields.io/badge/scikit--learn-F7931E?style=flat&amp;logo=scikitlearn&amp;logoColor=white" alt="scikit-learn">
+  <img src="https://img.shields.io/badge/Jupyter-F37626?style=flat&amp;logo=jupyter&amp;logoColor=white" alt="Jupyter">
+</p>
 
 ## Project Overview
 

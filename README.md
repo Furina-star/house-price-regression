@@ -158,24 +158,63 @@ The reported improvement is specific to the evaluated dataset and split. Additio
 
 ## Phase B: Ames Housing
 
-**Status: Not started**
+### Objective
 
-This phase will extend the regression workflow to the Ames Housing dataset from Kaggle.
+Extend the regression workflow to the Ames Housing dataset, focusing on missing-value handling, categorical encoding, target transformations, preprocessing pipelines, and regularization.
 
-The planned work includes missing-value handling, categorical encoding, target transformations, preprocessing pipelines, regularization, and cross-validation.
+### Dataset
 
-Results will be documented after completing the experiments.
+- **Source:** Kaggle House Prices: Advanced Regression Techniques
+- **Observations:** 1,460 residential properties
+- **Original features:** 79 predictors (36 numerical, 43 categorical)
+- **Target:** SalePrice (USD)
+- **Data split:** 80% training, 20% testing (`random_state=42`)
 
----
+### Methodology
 
-## Project Goals
+1. Investigated missing values and distinguished structural absence from unknown information.
+2. Examined unusual properties and potential outliers.
+3. Applied a logarithmic target transformation using `log1p`.
+4. Explored One-Hot Encoding and Ordinal Encoding.
+5. Built numerical and categorical preprocessing pipelines using `SimpleImputer`, `StandardScaler`, and `OneHotEncoder`.
+6. Combined transformations using `ColumnTransformer`.
+7. Trained and tuned Linear Regression, Ridge, Lasso, and ElasticNet using five-fold cross-validation.
+8. Selected Lasso based on cross-validation MAE.
+9. Evaluated the selected model on the held-out test set and examined residuals and prediction errors.
 
-By completing both phases, this project aims to demonstrate:
+### Cross-Validation Results
 
-- Exploratory data analysis and preprocessing
-- Linear Regression fundamentals
-- Feature engineering and model interpretation
-- Regularization using Ridge, Lasso, and ElasticNet
-- Cross-validation and hyperparameter tuning
-- Model evaluation using R², MAE, RMSE, and residual analysis
-- Reproducible machine learning workflows
+| Model | Mean CV MAE |
+|---|---:|
+| Linear Regression | $18,529.62 |
+| Ridge | $17,368.51 |
+| Lasso | **$16,291.09** |
+| ElasticNet | $16,392.26 |
+
+### Final Test Results
+
+**Selected model:** Lasso Regression
+
+**Best tested alpha:** 0.0005
+
+| Metric | Result |
+|---|---:|
+| R² | 0.9334 |
+| MAE | $14,900.80 |
+| RMSE | $22,597.20 |
+
+The selected Lasso model achieved the lowest cross-validation MAE and set 189 of 305 processed feature coefficients to zero.
+
+### Key Findings
+
+- The logarithmic transformation reduced SalePrice skewness from 1.743 to 0.125.
+- Missing-value treatment required distinguishing absent features from unknown measurements.
+- Preprocessing pipelines enabled consistent feature transformations and leakage-safe cross-validation.
+- Lasso outperformed the other tested regression models based on mean cross-validation MAE.
+- Residual analysis showed larger error variability for higher-priced properties.
+- Individual prediction errors remained substantial for some houses despite strong overall test performance.
+
+### Limitations
+
+The results are based on one train/test split and five-fold cross-validation. Hyperparameter selection and performance estimates may vary with different samples.
+Rare categories, unusual sale conditions, and extreme property values may affect generalization. The largest residuals show that a high R² does not guarantee reliable predictions for every property.

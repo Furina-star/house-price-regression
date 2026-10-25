@@ -240,3 +240,34 @@ The selected Lasso model's held-out residuals show greater error variability for
 
 The results are based on one train/test split and five-fold cross-validation. Hyperparameter selection and performance estimates may vary with different samples.
 Rare categories, unusual sale conditions, and extreme property values may affect generalization. The largest residuals show that a high R² does not guarantee reliable predictions for every property.
+
+---
+
+## Project Conclusion
+
+This project explored the fundamentals of supervised machine learning through two house price regression experiments, progressing from a relatively clean numerical dataset to a more complex dataset containing missing values and categorical features.
+
+### Results
+
+- **California Housing:** Ridge Regression achieved an R² of 0.5942 and a test MAE of $52,556.97.
+- **Ames Housing:** Lasso Regression achieved an R² of 0.9334 and a test MAE of $14,900.80.
+
+These results represent two independent experiments and are not directly comparable as measures of model superiority because the datasets have different targets, characteristics, and price distributions.
+
+### Lessons Learned
+
+The experiments demonstrated the importance of exploratory data analysis, feature engineering, appropriate missing-value treatment, categorical encoding, regularization, and cross-validation.
+
+One important takeaway is that model performance depends not only on the chosen algorithm but also on how the data is prepared and evaluated.
+
+Residual analysis further demonstrated that strong overall evaluation metrics do not guarantee accurate predictions for every observation.
+
+### Limitations and Future Work
+
+The models were developed for educational purposes and have not been validated for real-world property valuation.
+
+Potential future improvements include additional feature engineering, more robust cross-validation strategies, and comparisons with nonlinear regression algorithms.
+
+**Project Status: Completed**
+
+Both planned regression experiments, their evaluations, and the associated documentation have been completed.

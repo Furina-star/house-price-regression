@@ -40,8 +40,8 @@ The project is divided into two phases:
 house-price-regression/
 ├── data/
 ├── notebooks/
-│   └── 01_california_housing.ipynb
-│   └── 02_ames_housing.ipynb 
+│   ├── 01_california_housing.ipynb
+│   └── 02_ames_housing.ipynb
 ├── reports/
 │   └── figures/
 ├── src/
@@ -53,7 +53,7 @@ house-price-regression/
 - `data/` — Local datasets used in experiments.
 - `notebooks/` — Exploratory analysis, model training, and evaluation.
 - `reports/figures/` — Selected visualizations for documentation.
-- `src/` — Optional reusable Python functions.
+- `src/` — Reserved for future reusable Python modules.
 - `requirements.txt` — Python dependencies needed to reproduce the project.
 
 ## Installation and Usage
@@ -85,14 +85,16 @@ python -m pip install -r requirements.txt
 
 Use a Python version compatible with the pinned dependencies.
 
-### 4. Run the Notebook
+### 4. Run the Notebooks
 
 1. Open the project in PyCharm or another Jupyter-compatible environment.
 2. Select the project's virtual environment as the Python interpreter and notebook kernel.
-3. Open `notebooks/01_california_housing.ipynb`.
+3. Open `notebooks/01_california_housing.ipynb` or `notebooks/02_ames_housing.ipynb`.
 4. Execute the notebook cells in order.
 
-The California Housing dataset is retrieved using scikit-learn and may require an internet connection on the first run.
+The California Housing dataset is retrieved using scikit-learn and may require an internet connection on the first run. For Ames Housing, place the Kaggle training dataset at `data/train.csv` before running the notebook.
+
+Both notebooks support execution from the project root or `notebooks/`. The selected plots are saved to `reports/figures/` at 200 dpi with tight bounding boxes when their visualization cells run.
 
 ---
 
@@ -138,6 +140,16 @@ Establish a Linear Regression baseline using the California Housing dataset, eva
 | RMSE | $74,558.14 | $72,925.19 |
 
 Ridge Regression with the engineered bedroom ratio achieved the lowest cross-validation MAE among the tested configurations. On the held-out test set, it reduced MAE by approximately 1.43% compared with the original baseline.
+
+### Visualizations
+
+![California House Price Distribution](reports/figures/california_distribution.png)
+
+Median house values are right-skewed, with a visible concentration at the dataset's upper price cap.
+
+![California Baseline Regression Residuals](reports/figures/california_residuals.png)
+
+The baseline Linear Regression residuals show systematic patterns and substantial prediction errors; the red line marks zero error.
 
 ### Key Findings
 
@@ -204,6 +216,16 @@ Extend the regression workflow to the Ames Housing dataset, focusing on missing-
 | RMSE | $22,597.20 |
 
 The selected Lasso model achieved the lowest cross-validation MAE and set 189 of 305 processed feature coefficients to zero.
+
+### Visualizations
+
+![Ames Original and Log-Transformed Sale Price Distributions](reports/figures/ames_log_distribution.png)
+
+The training-set distributions show how `log1p` reduces the right skew in sale prices.
+
+![Ames Lasso Regression Residuals](reports/figures/ames_lasso_residuals.png)
+
+The selected Lasso model's held-out residuals show greater error variability for higher-priced properties.
 
 ### Key Findings
 
